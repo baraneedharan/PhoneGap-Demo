@@ -204,12 +204,11 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 $('#camera-page').live('pageshow',function(event, ui){
 	$(function(){
         $("#takePhotoButton").live("click", function() {
-            navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
-			    destinationType: Camera.DestinationType.FILE_URI });
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 50 }); 
         });
 		function onSuccess(imageData) {
 		    var image = document.getElementById('myImage');
-		    image.src = imageURI;
+		    image.src = "data:image/jpeg;base64," + imageData;
 		}
 
 		function onFail(message) {
@@ -259,7 +258,7 @@ $('#contacts-page').live('pageshow',function(event, ui){
 		});
 
 		function onSaveSuccess(contact) {
-	        alert("Save Success");
+	        alert("Contact Saved Successfully");
 	    }
 
 	    function onSaveError(contactError) {
