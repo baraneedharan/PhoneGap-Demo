@@ -211,7 +211,7 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 $('#camera-page').live('pageshow',function(event, ui){
 	$(function(){
         $("#takePhotoButton").live("click", function() {
-            navigator.camera.getPicture(onSuccess, onFail, { quality: 49, destinationType : Camera.DestinationType.DATA_URL, sourceType : Camera.PictureSourceType.CAMERA }); 
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 49, destinationType : Camera.DestinationType.FILE_URI}); 
         });
 		function onSuccess(imageData) {
 		    var image = document.getElementById('myImage');
