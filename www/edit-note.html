@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	  <link rel="stylesheet" href="styles/main.css" />
+		<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+		<script type="text/javascript" charset="utf-8" src="scripts/assets/jquery-1.4.3.min.js"></script>
+  </head>
+  <body>
+			<div data-role="page" class="bg-pattern" id="edit-note-page">
+
+				<div data-role="header" data-position="inline">
+					<a href="list-details.html" class="back-button">Cancel</a>
+					<h1>Edit Note</h1>
+					<a href="note-pad.html" class="right-button save-to" data-transition="slidedown">Save</a>
+				</div>
+
+			  <div data-role="content" class="main-content"> 
+					<div class="new-note">
+						<label for="note-title">Title</label>
+						<div class="text-box"><input type="text" id="note-title" class="note-title" placeholder="Notes Title" /></div>
+						<label for="description">Description</label>
+						<div class="text-box"><textarea class="note-details" id="description" placeholder="Notes"></textarea></div>
+					</div>
+			  </div>
+
+
+			</div>
+  </body>
+</html>
+
+
