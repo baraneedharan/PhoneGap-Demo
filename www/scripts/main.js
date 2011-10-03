@@ -1,7 +1,6 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function populateDB(tx) {
-    //tx.executeSql('DROP TABLE IF EXISTS DEMO');
     tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id INTEGER PRIMARY KEY ASC, a VARCHAR(100), b VARCHAR(100) )');
 }
 
@@ -72,7 +71,6 @@ $('#all-lists-page').live('pagebeforeshow',function(event, ui){
 		$('a.details').live('click', function() {
 			id_number = $(this).find('.id-number').text();
 			localStorage.setItem('todo', id_number);
-			//alert(id_number);
 		});
 		
 		$(function(){
@@ -95,7 +93,7 @@ $('#all-lists-page').live('pagebeforeshow',function(event, ui){
 				$(".lists").append("<div class='no-content mtop15'>No Notes Found</div>");
 			}
 			else {
-				//alert("has content");
+				//Do nothing
 			}
 		}
 
@@ -115,7 +113,6 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 		var db_new = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 		db_new.transaction(queryDB, errorCB);
 		updatedNo = localStorage.getItem('todo');
-		//alert(updatedNo);
 	});
 	
 	function queryDB(tx) {
@@ -126,7 +123,6 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 		var len = results.rows.length;						
 		console.log("DEMO table: " + len + " rows found.");
 		$("h1.header-wrap").text(results.rows.item(0).a);
-		//alert(results.rows.item(0).b);
 		$(".lists").append("<div class='note-description'>" + results.rows.item(0).b  + "</div><a href='edit-note.html' data-transition='slideup' class='edit-note'></a>" );
 	}
 
@@ -136,7 +132,6 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 
 	$(function(){
 	  	$('.delete-note').click(function(){
-			//alert("clicked delete button");
 			var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 			console.log("successfully connected to DB");
 	  		db.transaction(newqueryDB, newerrorCB);
@@ -162,7 +157,6 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
      	var db_new = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
      	db_new.transaction(queryDB, errorCB);
 		updatedNo = localStorage.getItem('todo');
-		//alert(updatedNo);
 	});
 		
 	function queryDB(tx) {
@@ -184,7 +178,7 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 	$(function(){
 	  $('.save-to').click(function(){
 		var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-		console.log("successfully connected to DB");
+		//console.log("successfully connected to DB");
 	    db.transaction(newqueryDB, newerrorCB);
 	   });
 
@@ -192,7 +186,6 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 			var note = $("input.note-title").val();
 			var note_detail = $(".note-details").val();
 			tx.executeSql('UPDATE DEMO set a= ?, b= ? WHERE ID= ?' ,[note, note_detail, updatedNo]);
-			//alert(note + "and" + note_detail);
     	}
 	
 		function newerrorCB(err) {
@@ -204,7 +197,7 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 $('#camera-page').live('pageshow',function(event, ui){
 	$(function(){
         $("#takePhotoButton").live("click", function() {
-            navigator.camera.getPicture(onSuccess, onFail, { quality: 50 }); 
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 49, destinationType : Camera.DestinationType.DATA_URL, sourceType : Camera.PictureSourceType.CAMERA }); 
         });
 		function onSuccess(imageData) {
 		    var image = document.getElementById('myImage');
