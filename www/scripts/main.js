@@ -45,10 +45,11 @@ $('#add-new-page').live('pagebeforeshow',function(event, ui){
 			var note = $("input.note-title").val();
 			var note_detail = $(".note-details").val();
 			if(note == ""){
-				alert("nothing to save");
+				alert("Please Enter the Note title to save");
 			}
 			else {
 				tx.executeSql('INSERT INTO DEMO (a, b) VALUES (?,?)',[note,note_detail]);
+				document.location.href="note-pad.html";
 			}
 			//alert(note_detail);
 			
@@ -132,14 +133,27 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 
 	$(function(){
 	  	$('.delete-note').click(function(){
-			var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-			console.log("successfully connected to DB");
-	  		db.transaction(newqueryDB, newerrorCB);
+		 navigator.notification.confirm(
+		            '',  // message
+		            onConfirm,              // callback to invoke with index of button pressed
+		            'Are you sure you want to delete',            // title
+		            'Delete,Exit'          // buttonLabels
+		        );
 		  });
+		function onConfirm(button) {
+				if(button == 1) {
+					var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+			  		db.transaction(newqueryDB, newerrorCB);
+				}
+				else {
+					//alert("Not deleted")
+				}
+		    }
+		
 
 		function newqueryDB(tx) {
 			tx.executeSql('DELETE FROM DEMO WHERE ID= ?',[updatedNo]);
-			alert("deleted");
+			document.location.href="note-pad.html";
 		 }
 
 		function newerrorCB(err) {
