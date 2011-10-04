@@ -214,7 +214,11 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 $('#camera-page').live('pageshow',function(event, ui){
 	$(function(){
         $("#takePhotoButton").live("click", function() {
-            navigator.camera.getPicture(onSuccess, onFail, { quality: 49, destinationType : Camera.DestinationType.FILE_URI}); 
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 49,
+	 														destinationType : Camera.DestinationType.FILE_URI, 
+															sourceType : Camera.PictureSourceType.CAMERA,
+															encodingType: Camera.EncodingType.JPEG,
+															}); 
         });
 		function onSuccess(imageData) {
 		    var image = document.getElementById('myImage');
