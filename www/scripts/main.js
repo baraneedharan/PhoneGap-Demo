@@ -253,7 +253,7 @@ $('#geolocation-page').live('pageshow',function(event, ui){
 
 $('#contacts-page').live('pagebeforeshow',function(event, ui){
 	$(function(){
-	  	$('.save-contact').live("click", function(){
+	  	$('.save-contact').click(function(){
 			var contact_name = $('.contact-name').val();
 			if(contact_name == ""){
 				navigator.notification.alert(
