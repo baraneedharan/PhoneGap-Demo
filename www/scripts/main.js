@@ -292,11 +292,11 @@ $('#contacts-page').live('pagebeforeshow',function(event, ui){
 	            'Contact Saved Successfully',     
 	            'Done'                  				
 	        );
+			function alertDismissed() {
+			     document.location.href="index.html";
+			}
 	    }
-	
-		function alertDismissed() {
-		     document.location.href="index.html";
-		}
+
 
 	    function onSaveError(contactError) {
 	        alert("Error = " + contactError.code);
