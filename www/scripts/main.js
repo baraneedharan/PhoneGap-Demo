@@ -271,6 +271,7 @@ $('#contacts-page').live('pagebeforeshow',function(event, ui){
 				var contact = navigator.contacts.create();
 		        var name = new ContactName();
 		        name.givenName = $(".contact-name").val();
+				name.displayName = $(".contact-name").val();
 				contact.name = name;
 
 				var worknumber = $(".contact-wnumber").val()
