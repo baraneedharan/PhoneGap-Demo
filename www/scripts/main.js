@@ -251,28 +251,52 @@ $('#geolocation-page').live('pageshow',function(event, ui){
 
 //Phonegap's API to create contacts which will be saved in the Device contacts database
 
-$('#contacts-page').live('pageshow',function(event, ui){
+$('#contacts-page').live('pagebeforeshow',function(event, ui){
 	$(function(){
-	  	$('.save-contact').click(function(){
-			var contact = navigator.contacts.create();
-	        var name = new ContactName();
-	        name.givenName = $(".contact-name").val();
-			contact.name = name;
-			
-			var worknumber = $(".contact-wnumber").val()
-			var mobilenumber = $(".contact-mnumber").val()
-			
-			var phoneNumbers = [2];
-			phoneNumbers[0] = new ContactField('work', worknumber, false);
-			phoneNumbers[1] = new ContactField('mobile', mobilenumber, true); 
-			contact.phoneNumbers = phoneNumbers;
+	  	$('.save-contact').live("click", function(){
+			var contact_name = $('.contact-name').val();
+			if(contact_name == ""){
+				navigator.notification.alert(
+		            '',  									
+		            namealertDismissed,         				
+		            'Please Enter the Name to save',     
+		            'Ok'                  			
+		        );
+				function namealertDismissed() {
+				     // Do nothing
+				}
+		
+			}
+			else {
+				var contact = navigator.contacts.create();
+		        var name = new ContactName();
+		        name.givenName = $(".contact-name").val();
+				contact.name = name;
 
-	        contact.save(onSaveSuccess,onSaveError);
+				var worknumber = $(".contact-wnumber").val()
+				var mobilenumber = $(".contact-mnumber").val()
+
+				var phoneNumbers = [2];
+				phoneNumbers[0] = new ContactField('work', worknumber, false);
+				phoneNumbers[1] = new ContactField('mobile', mobilenumber, true); 
+				contact.phoneNumbers = phoneNumbers;
+
+		        contact.save(onSaveSuccess,onSaveError);
+			}
 		});
 
 		function onSaveSuccess(contact) {
-	        alert("Contact Saved Successfully");
+	        navigator.notification.alert(
+	            '',  									
+	            alertDismissed,         				
+	            'Contact Saved Successfully',     
+	            'Done'                  				
+	        );
 	    }
+	
+		function alertDismissed() {
+		     document.location.href="index.html";
+		}
 
 	    function onSaveError(contactError) {
 	        alert("Error = " + contactError.code);
