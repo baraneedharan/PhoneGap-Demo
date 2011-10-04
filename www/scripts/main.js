@@ -1,3 +1,10 @@
+/*------------------------
+Notes taking application
+----------------------------*/
+
+// Initializing the phonegap and creating the database
+
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function populateDB(tx) {
@@ -31,7 +38,7 @@ function onDeviceReady() {
 }
 
 
-
+// Adding new note to the device Database
 
 $('#add-new-page').live('pagebeforeshow',function(event, ui){
 	$(function(){
@@ -51,19 +58,16 @@ $('#add-new-page').live('pagebeforeshow',function(event, ui){
 				tx.executeSql('INSERT INTO DEMO (a, b) VALUES (?,?)',[note,note_detail]);
 				document.location.href="note-pad.html";
 			}
-			//alert(note_detail);
-			
-			//alert("successfully inserted");
 		 }
 
 		function errorCB(err) {
 		    console.log("Error processing SQL: "+err.code);
    		}
-
 	});
 });
 
 
+// Showing all the notes saved in the device Database
 
 
 
@@ -100,16 +104,15 @@ $('#all-lists-page').live('pagebeforeshow',function(event, ui){
 
 		function errorCB(err) {
 		    console.log("Error processing SQL: "+err.code);
-		}
-		
+		}	
 	});
 });
 
 
+// Details of the individual notes saved in the device Database
 	
 
 $('#list-details-page').live('pagebeforeshow',function(event, ui){
-
 	$(function(){
 		var db_new = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 		db_new.transaction(queryDB, errorCB);
@@ -122,7 +125,6 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 
 	function querySuccess(tx, results) {
 		var len = results.rows.length;						
-		console.log("DEMO table: " + len + " rows found.");
 		$("h1.header-wrap").text(results.rows.item(0).a);
 		$(".lists").append("<div class='note-description'>" + results.rows.item(0).b  + "</div><a href='edit-note.html' data-transition='slideup' class='edit-note'></a>" );
 	}
@@ -133,22 +135,22 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 
 	$(function(){
 	  	$('.delete-note').click(function(){
-		 navigator.notification.confirm(
-		            '',  // message
-		            onConfirm,              // callback to invoke with index of button pressed
-		            'Are you sure you want to delete',            // title
-		            'Delete,Exit'          // buttonLabels
-		        );
+		 	navigator.notification.confirm(
+		            '',  												
+		            onConfirm,              
+		            'Are you sure you want to delete',           
+		            'Delete,Exit'         
+		    );
 		  });
 		function onConfirm(button) {
-				if(button == 1) {
-					var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-			  		db.transaction(newqueryDB, newerrorCB);
-				}
-				else {
-					//alert("Not deleted")
-				}
-		    }
+			if(button == 1) {
+				var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+		  		db.transaction(newqueryDB, newerrorCB);
+			}
+			else {
+				//Don't do anything
+			}
+		 }
 		
 
 		function newqueryDB(tx) {
@@ -159,14 +161,14 @@ $('#list-details-page').live('pagebeforeshow',function(event, ui){
 		function newerrorCB(err) {
 	        console.log("Error processing SQL: "+err.code);
 	    }
-
 	});
-
 });
 
 
-$('#edit-note-page').live('pagebeforeshow',function(event, ui){
+// Edit of the individual note which is already saved in the device Database
 
+
+$('#edit-note-page').live('pagebeforeshow',function(event, ui){
 	$(function(){
      	var db_new = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
      	db_new.transaction(queryDB, errorCB);
@@ -192,7 +194,6 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 	$(function(){
 	  $('.save-to').click(function(){
 		var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-		//console.log("successfully connected to DB");
 	    db.transaction(newqueryDB, newerrorCB);
 	   });
 
@@ -207,6 +208,8 @@ $('#edit-note-page').live('pagebeforeshow',function(event, ui){
 	    }
 	});
 });
+
+//Phonegap's API to call the native camera feature
 
 $('#camera-page').live('pageshow',function(event, ui){
 	$(function(){
@@ -223,6 +226,8 @@ $('#camera-page').live('pageshow',function(event, ui){
 		}
 	});	
 });
+
+//Phonegap's API to call the native Geolocation feature
 
 $('#geolocation-page').live('pageshow',function(event, ui){
 	$(function(){
@@ -244,6 +249,8 @@ $('#geolocation-page').live('pageshow',function(event, ui){
     }
 });
 
+//Phonegap's API to create contacts which will be saved in the Device contacts database
+
 $('#contacts-page').live('pageshow',function(event, ui){
 	$(function(){
 	  	$('.save-contact').click(function(){
@@ -259,7 +266,6 @@ $('#contacts-page').live('pageshow',function(event, ui){
 			phoneNumbers[0] = new ContactField('work', worknumber, false);
 			phoneNumbers[1] = new ContactField('mobile', mobilenumber, true); 
 			contact.phoneNumbers = phoneNumbers;
-			
 
 	        contact.save(onSaveSuccess,onSaveError);
 		});
@@ -271,7 +277,6 @@ $('#contacts-page').live('pageshow',function(event, ui){
 	    function onSaveError(contactError) {
 	        alert("Error = " + contactError.code);
 	    }
-
 	});
 });
 

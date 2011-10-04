@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 /* ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
-   •• Hydrogen coach Mobile web                                      ••
-   ••  Updated: {{12-08-2011}}                                       ••
+   •• Phonegap Demo application                                      ••
+   ••  Updated: {{04-10-2011}}                                       ••
    ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••   
    
    0. RESET
@@ -23,13 +23,6 @@ body {
   color: #000;	
 }
 
-
-/* . SITE HEADER
-••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• */
-
-
-
-
 /* . CONTENT
 ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• */
 
@@ -44,6 +37,10 @@ body {
 	font-weight:normal;
 	text-shadow: none;
 }
+
+/* . INDEX PAGE
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• */
+
 
 .icons-div {
 	width: 80%;
@@ -83,6 +80,9 @@ body {
 	background: url("i/icon4.png") no-repeat 0 0 transparent;
 }
 
+/* . NOTES PAGE
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• */
+
 .notes {
 	background: url("i/list-bg.png") repeat-x 0 0 transparent;
 	height: 48px;
@@ -120,42 +120,62 @@ label {
 	display: none;
 }
 
-.add-new {
-	background: url("i/new.png") no-repeat 0 0 transparent;
+
+/* . Button Icons
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• */
+
+.add-new,
+.delete-note,
+.edit-note {
 	height: 31px;
 	width: 33px;
+}
+
+.add-new,
+.delete-note,
+.edit-note,
+.back-button,
+.right-button {
 	border: medium none!important;
     -webkit-border-radius: 0 0 0 0;
 	border-radius: 0 0 0 0;
     -webkit-box-shadow: none !important;
 	box-shadow: none !important;
+}
+
+.add-new {
+	background: url("i/new.png") no-repeat 0 0 transparent;
 }
 
 .delete-note {
 	background: url("i/delete.png") no-repeat 0 0 transparent;
-	height: 31px;
-	width: 33px;
-	border: medium none!important;
-    -webkit-border-radius: 0 0 0 0;
-	border-radius: 0 0 0 0;
-    -webkit-box-shadow: none !important;
-	box-shadow: none !important;
 }
 
 .edit-note {
 	background: url("i/edit.png") no-repeat 0 0 transparent;
-	height: 31px;
-	width: 33px;
 	display: inline-block;
-	border: medium none!important;
-    -webkit-border-radius: 0 0 0 0;
-	border-radius: 0 0 0 0;
-    -webkit-box-shadow: none !important;
-	box-shadow: none !important;
 	position: absolute;
 	top: 6px;
 	right: 52px;
 }
+
+.back-button {
+	background: url("i/back.png") no-repeat 0 0 transparent;
+	height: 31px;
+	width: 58px;
+}
+
+.back-button span {
+	left: 1px;
+    position: relative;
+    top: 2px;
+}
+
+.right-button {
+	background: url("i/right-button.png") no-repeat 0 0 transparent;
+	height: 29px;
+	width: 61px;
+}	
 
 .add-new span,
 .back-button span,
@@ -170,33 +190,6 @@ label {
 	padding: 0 !important;
 }
 
-.back-button {
-	background: url("i/back.png") no-repeat 0 0 transparent;
-	height: 31px;
-	width: 58px;
-	border: medium none!important;
-    -webkit-border-radius: 0 0 0 0;
-	border-radius: 0 0 0 0;
-    -webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
-
-.back-button span {
-	left: 1px;
-    position: relative;
-    top: 2px;
-}
-
-.right-button {
-	background: url("i/right-button.png") no-repeat 0 0 transparent;
-	height: 29px;
-	width: 61px;
-	border: medium none!important;
-    -webkit-border-radius: 0 0 0 0;
-	border-radius: 0 0 0 0;
-    -webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}	
 
 .right-button span {
 	position: relative;
@@ -253,7 +246,7 @@ input.ui-input-text {
 .note-description {
 	margin: 0 15px;
 	padding: 10px;
-	background: #5a5961; /* Old browsers */
+	background: #5a5961; 
 	border: 2px solid #8b8a91;
 	
 	color: #a0a1b2 ;
@@ -285,21 +278,6 @@ input.ui-input-text {
 	border-radius: 6px;
 }
 
-.take-pic {
-	
-}
-
-
-
-/*  =footer
-======================================================================= */
-
-.footer {
-}
-
-/*  =Overriding default styles
-======================================================================= */
-
 
 
 /*  =Floats
@@ -316,6 +294,10 @@ input.ui-input-text {
 .clear {
 	clear: both;
 }
+
+
+/*  =Predefined styles
+======================================================================= */
 
 .posrel {
 	position: relative;
