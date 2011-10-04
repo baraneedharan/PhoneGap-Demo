@@ -432,7 +432,7 @@
 }
 .ui-btn-down-d {
 	border: 1px solid 		#aaaaaa;
-	background: 			#ffffff;
+	/*background: 			#ffffff;*/
 	font-weight: bold;
 	color: 					#111;
 	text-shadow: 0 1px 1px 	#ffffff;
@@ -698,7 +698,7 @@ a.ui-link-inherit {
 -----------------------------------------------------------------------------------------------------------*/
 
 .ui-icon-alt {
-	background: 						#fff;
+	/*background: 						#fff;*/
 	background: 						rgba(255,255,255,.3);
 	background-image: url(images/icons-18-black.png);
 	background-repeat: no-repeat;

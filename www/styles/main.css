@@ -19,7 +19,7 @@
 ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• */
 
 body {
-  font: bold 14px/18px "HelveticaNeue",Helvetica,Arial,sans-serif;
+  font: bold 14px/18px Arial,sans-serif;
   color: #000;	
 }
 
@@ -126,7 +126,8 @@ label {
 
 .add-new,
 .delete-note,
-.edit-note {
+.edit-note,
+.camera-icon {
 	height: 31px;
 	width: 33px;
 }
@@ -135,7 +136,8 @@ label {
 .delete-note,
 .edit-note,
 .back-button,
-.right-button {
+.right-button,
+.camera-icon {
 	border: medium none!important;
     -webkit-border-radius: 0 0 0 0;
 	border-radius: 0 0 0 0;
@@ -149,6 +151,10 @@ label {
 
 .delete-note {
 	background: url("i/delete.png") no-repeat 0 0 transparent;
+}
+
+.camera-icon {
+	background: url("i/camera-icon.png") no-repeat 0 0 transparent;
 }
 
 .edit-note {
@@ -181,7 +187,8 @@ label {
 .back-button span,
 .right-button span,
 .delete-note span,
-.edit-note span {
+.edit-note span,
+.camera-icon span {
 	border: medium none!important;
     -webkit-border-radius: 0 0 0 0;
 	border-radius: 0 0 0 0;
@@ -278,6 +285,11 @@ input.ui-input-text {
 	border-radius: 6px;
 }
 
+p.camera-desc {
+	margin: 15px;
+	padding: 10px;
+	color: #fff;
+}
 
 
 /*  =Floats
